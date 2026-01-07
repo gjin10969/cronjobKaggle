@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
+from typing import Optional
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Kaggle Automation Cron"
@@ -7,16 +8,16 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     # Kaggle Credentials
-    KAGGLE_USERNAME: str
-    KAGGLE_KEY: str
+    KAGGLE_USERNAME: Optional[str] = None
+    KAGGLE_KEY: Optional[str] = None
     
     # Musetalk Paths
     NB_PATH: str = "data/musetalk-v1.ipynb"
     METADATA_PATH: str = "data/kernel-metadata.json"
 
     # VoxCPM Credentials
-    VOXCPM_USERNAME: str | None = None
-    VOXCPM_KEY: str | None = None
+    VOXCPM_USERNAME: Optional[str] = None
+    VOXCPM_KEY: Optional[str] = None
     
     # VoxCPM Paths
     VOXCPM_NB_PATH: str = "data/voxcpm/voxcpm-api.ipynb"

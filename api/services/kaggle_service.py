@@ -19,6 +19,9 @@ class KaggleService:
         self.api.authenticate()
 
     def _setup_auth(self):
+        if not self.username or not self.key:
+            raise ValueError("Kaggle credentials not provided. Please set KAGGLE_USERNAME and KAGGLE_KEY environment variables.")
+            
         # Set environment variables for Kaggle API to pick up
         os.environ["KAGGLE_USERNAME"] = self.username
         os.environ["KAGGLE_KEY"] = self.key
