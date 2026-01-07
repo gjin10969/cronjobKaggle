@@ -3,3 +3,4 @@ uvicorn
 kaggle
 python-dotenv
 pydantic-settings
+pydantic
