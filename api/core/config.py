@@ -24,15 +24,29 @@ class Settings(BaseSettings):
     VOXCPM_METADATA_PATH: str = "data/voxcpm/kernel-metadata.json"
 
     # Client Config
-    API_KEYS: list[str] = [
-        'AIzaSyAOWknOS2YWTdspM0CKfQT0uxMrBP8cg00',
-        'AIzaSyAtfDRIjNz-Pt4BD-AsV4wlvWh7hD1qzWc',
-        'AIzaSyDM181FEzSQ3VO3TSPKT_y1rIKwDo_90EY',
-        'AIzaSyD9QB87596GPXYrDENkkIgBggw-RbFjsR0',
-        'AIzaSyBLY-i5eYox7x26eWjgaHX-7b7rS_B3eBY',
-        'AIzaSyAMmJaUuXfQprZcOx6WrycPtXVRVEvB6hs'
-    ]
-    GEMINI_PROJECT_ID: str = 'gen-lang-client-0221138162'
+    # Expects comma-separated string: "KEY1,KEY2,KEY3"
+    API_KEYS: str | list[str] = []
+    GEMINI_PROJECT_ID: Optional[str] = None
+    
+    @classmethod
+    def parse_api_keys(cls, v: str | list[str]) -> list[str]:
+        if isinstance(v, str):
+            # Split by comma and strip whitespace
+            return [k.strip() for k in v.split(",") if k.strip()]
+        return v or []
+
+    # Use field_validator for Pydantic v2 or validator for v1
+    # Assuming pydantic-settings uses v2 or v1 compat.
+    # Let's try simple post-init or property if validation is tricky with version mismatches.
+    # Actually, pydantic-settings handles comma-separated strings for list[str] automatically in many cases!
+    # But to be safe and explicit:
+    
+    from pydantic import field_validator
+    
+    @field_validator("API_KEYS", mode="before")
+    @classmethod
+    def assemble_api_keys(cls, v):
+        return cls.parse_api_keys(v)
 
 
     class Config:
