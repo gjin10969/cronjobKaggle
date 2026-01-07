@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/main.py" }
+  ],
+  "crons": [
+    {
+      "path": "/api/v1/cron/run-kaggle",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/v1/cron/run-voxcpm",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "env": {
+      "KAGGLE_USERNAME": "your_username",
+      "KAGGLE_KEY": "your_key"
+  }
+}

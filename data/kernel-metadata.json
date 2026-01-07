@@ -1,0 +1,24 @@
+{
+    "id": "gjinpogi/musetalk-v1",
+    "id_no": 102447989,
+    "title": "MUSETALK-V1",
+    "code_file": "musetalk-v1.ipynb",
+    "language": "python",
+    "kernel_type": "notebook",
+    "is_private": true,
+    "enable_gpu": true,
+    "enable_tpu": false,
+    "enable_internet": true,
+    "keywords": [],
+    "dataset_sources": [
+        "gjinpogi/fast12",
+        "gjinpogi/fastapi-app",
+        "gjinpogi/fastapi-app1",
+        "gjinpogi/fastapi-app2",
+        "gjinpogi/musetalk"
+    ],
+    "kernel_sources": [],
+    "competition_sources": [],
+    "model_sources": [],
+    "docker_image": "gcr.io/kaggle-images/python@sha256:bf0b407a5ed73626191ae2259063a0090ae36666c8f00ffdfae3fb543eae750d"
+}

@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+kaggle
+python-dotenv
+pydantic-settings

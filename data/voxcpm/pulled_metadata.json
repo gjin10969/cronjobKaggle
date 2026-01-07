@@ -1,0 +1,25 @@
+{
+  "id": "gjin10969/voxcpm-api",
+  "id_no": 102439685,
+  "title": "VOXCPM-API",
+  "code_file": "voxcpm-api.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [
+    "gjin10969/fastapi-app2",
+    "gjin10969/musetalk",
+    "gjin10969/tpu123",
+    "gjin10969/updated-voxcpm",
+    "gjin10969/voxcpm"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python-tpuvm@sha256:faf5c1271481db7d75ee51028e9c7e458d5fe12ff48b138fe38cd60f4b9b7b68",
+  "machine_shape": "Gpu"
+}
