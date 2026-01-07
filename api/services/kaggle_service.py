@@ -1,7 +1,7 @@
 import json
 import os
 import shutil
-from kaggle.api.kaggle_api_extended import KaggleApi
+# from kaggle.api.kaggle_api_extended import KaggleApi # Moved to lazy import
 from api.core.config import get_settings
 
 class KaggleService:
@@ -15,6 +15,9 @@ class KaggleService:
         self.metadata_path = metadata_path or self.settings.METADATA_PATH
 
         self._setup_auth()
+        
+        # Lazy import and init to avoid startup crashes on read-only systems
+        from kaggle.api.kaggle_api_extended import KaggleApi
         self.api = KaggleApi()
         self.api.authenticate()
 
@@ -22,9 +25,11 @@ class KaggleService:
         if not self.username or not self.key:
             raise ValueError("Kaggle credentials not provided. Please set KAGGLE_USERNAME and KAGGLE_KEY environment variables.")
             
-        # Set environment variables for Kaggle API to pick up
+        # Set environment variables for Kaggle API
         os.environ["KAGGLE_USERNAME"] = self.username
         os.environ["KAGGLE_KEY"] = self.key
+        # Critical for serverless: force config dir to /tmp
+        os.environ["KAGGLE_CONFIG_DIR"] = "/tmp"
 
     def prepare_and_push(self, clean_metadata: bool = False) -> str:
         """
